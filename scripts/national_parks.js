@@ -20,7 +20,7 @@ function getLocations(event){
     })
 
     //get a hold of the table body so we can add rows to it for all the activities 
-    let tableBody = document.querySelector("#locationTable");
+    let tableBody = document.querySelector("#locationTableBody");
 
     tableBody.innerHTML = "";
 

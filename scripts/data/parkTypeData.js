@@ -13,3 +13,8 @@ const parkTypesArray = [
     "Trail",
     "Parkway"
 ]
+
+window.onload = function(){
+
+   
+}
