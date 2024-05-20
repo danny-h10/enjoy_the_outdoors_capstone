@@ -55,3 +55,8 @@ const locationsArray = [
     "Wisconsin",
     "Wyoming"
 ]
+
+window.onload = function(){
+
+   
+}

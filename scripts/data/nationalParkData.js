@@ -6858,3 +6858,8 @@ const nationalParksArray = [
     }
     }
 ]
+
+window.onload = function(){
+
+   
+}
