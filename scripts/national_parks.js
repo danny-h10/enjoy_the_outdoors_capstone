@@ -2,44 +2,49 @@
 
 window.onload = () => {
 
-    
+
     initLocationDropdown();
 
     let locationDropdown = document.querySelector("#locationDropdown")
 
-    locationDropdown.addEventListener("change", loadTable); 
+    locationDropdown.addEventListener("change", loadTable);
 
+    // locationDropdown.addEventListener("change", hideLocTyp)
+
+    initTypeDropdown()
+
+    let typeDropdown = document.querySelector("#typeDropdown")
+
+    typeDropdown.addEventListener("change", loadTypeTable)
 }
 
-function loadTable(event){
+function loadTable(event) {
 
     let dropdown = event.target
     let tableBody = document.querySelector("#locationTableBody")
-    
-    
+
+
     let selectedLocations = event.target.value
-    
-    let matchingLocations = nationalParksArray.filter( (location) => {
+
+    let matchingLocations = nationalParksArray.filter((location) => {
 
         return location.State === selectedLocations;
     })
-    
+
     tableBody.innerHTML = ""
-    matchingLocations.forEach( (data) => {
+
+    matchingLocations.forEach((data) => {
         buildTableRows(tableBody, data)
     })
 
 }
 
 
-function buildTableRows(tableBody, data){
+function buildTableRows(tableBody, data) {
 
-    
+    let newRow = tableBody.insertRow();
 
-    
-     let newRow = tableBody.insertRow();
 
-   
     let cell1 = newRow.insertCell();
     cell1.innerHTML = data.LocationID
 
@@ -48,19 +53,18 @@ function buildTableRows(tableBody, data){
 
     let cell3 = newRow.insertCell();
     cell3.innerHTML = `${data.Address} ${data.State}, ${data.ZipCode}`
-    
+
 
     let cell4 = newRow.insertCell();
     cell4.innerHTML = data.Phone
 
     let cell5 = newRow.insertCell();
-    if(data.Visit === undefined){
+    if (data.Visit === undefined) {
         cell5.innerHTML = "N/A";
-    }else{
+    } else {
         cell5.innerHTML = data.Visit
     }
-} 
-
+}
 
 function initLocationDropdown() {
 
@@ -73,19 +77,75 @@ function initLocationDropdown() {
 
     locationDropdown.appendChild(defaultOption)
 
-    //write a loop to work with each individual category and build an option for it
-    locationsArray.forEach( (location) => {
-
-        //create the new option for the category we are on in the loop
+    locationsArray.forEach((location) => {
         let newOption = document.createElement("option");
 
-        //set the value for the option
         newOption.value = location;
 
-        //set the textContent that the user will se whne choosing a category
-        newOption.textContent= location;
+        newOption.textContent = location;
 
         locationDropdown.appendChild(newOption);
     })
+}
+
+
+function initTypeDropdown() {
+
+    let typeDropdown = document.querySelector("#typeDropdown");
+
+    let defaultOption = document.createElement("option");
+
+    defaultOption.textContent = "Choose a Park Type"
+    defaultOption.value = ""
+
+    typeDropdown.appendChild(defaultOption)
+
+    parkTypesArray.forEach((Type) => {
+
+        let newOption = document.createElement("option");
+
+        newOption.value = Type;
+
+        newOption.textContent = Type;
+
+        typeDropdown.appendChild(newOption);
+    })
+}
+
+function loadTypeTable(event) {
+
+    let dropdown = event.target
+    let tableBody = document.querySelector("#locationTableBody")
+
+
+    let selectedTypes = event.target.value
+
+    let matchingTypes = nationalParksArray.filter((data) => {
+        if (data.LocationName.indexOf("National Park") === 0) {
+            return data.LocationName === selectedTypes;
+        }
+        return false
+
+    })
+
+    tableBody.innerHTML = ""
+
+    matchingTypes.forEach((data) => {
+        buildTableRows(tableBody, data)
+    })
 
 }
+
+
+// function hideLocTyp(event) {
+
+//     let locationSection = document.querySelector("#locationDropdown");
+
+//     if (event.target.value === "Type") {
+//         locationSection.classList.remove("d-none")
+//     } else {
+//         locationSection.classList.add("d-none")
+//     }
+
+// }
+
