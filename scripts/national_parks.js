@@ -2,34 +2,56 @@
 
 window.onload = () => {
 
+    
     initLocationDropdown();
 
     let locationDropdown = document.querySelector("#locationDropdown")
 
-    locationDropdown.addEventListener("change", getLocations);
+    locationDropdown.addEventListener("change", loadTable); 
 
 }
 
-function getLocations(event){
+function loadTable(event){
 
-    let selectedLocations = event.target.value
+    let dropdown = event.target
+    console.log(dropdown)
 
-    let matchingLocations = nationalParksArray.filter( (location) => {
+    let tableBody = document.querySelector("#locationTableBody")
 
-        return location.State === selectedLocations;
+    nationalParksArray.forEach( (data) => {
+        buildTableRows(tableBody, data)
     })
 
-    //get a hold of the table body so we can add rows to it for all the activities 
-    let tableBody = document.querySelector("#locationTableBody");
-
-    tableBody.innerHTML = "";
-
-    matchingLocations.forEach( (state) => {
-
-        buildTableRow(tableBody, state)
-
-    })
 }
+
+
+function buildTableRows(tableBody, data){
+
+    
+     let newRow = tableBody.insertRow();
+
+   
+    let cell1 = newRow.insertCell();
+    cell1.innerHTML = data.LocationID
+
+    let cell2 = newRow.insertCell();
+    cell2.innerHTML = data.LocationName
+
+    let cell3 = newRow.insertCell();
+    cell3.innerHTML = `${data.Address} ${data.State}, ${data.ZipCode}`
+    
+
+    let cell4 = newRow.insertCell();
+    cell4.innerHTML = data.Phone
+
+    let cell5 = newRow.insertCell();
+    if(data.Visit === undefined){
+        cell5.innerHTML = "N/A";
+    }else{
+        cell5.innerHTML = data.Visit
+    }
+} 
+
 
 function initLocationDropdown() {
 
@@ -57,17 +79,4 @@ function initLocationDropdown() {
         locationDropdown.appendChild(newOption);
     })
 
-}
-
-function buildTableRow(tableBody, data){
-
-    //create the row to hold the data
-    let newRow = tableBody.insertRow();
-
-    //loop over all the properties in the object and create a cell for them
-    for(let property in data){
-
-        let newTD = newRow.insertCell();
-        newTD.innerText = data[property];
-    }
 }
