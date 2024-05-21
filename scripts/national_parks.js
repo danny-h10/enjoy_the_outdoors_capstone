@@ -14,11 +14,18 @@ window.onload = () => {
 function loadTable(event){
 
     let dropdown = event.target
-    console.log(dropdown)
-
     let tableBody = document.querySelector("#locationTableBody")
+    
+    
+    let selectedLocations = event.target.value
+    
+    let matchingLocations = nationalParksArray.filter( (location) => {
 
-    nationalParksArray.forEach( (data) => {
+        return location.State === selectedLocations;
+    })
+    
+    tableBody.innerHTML = ""
+    matchingLocations.forEach( (data) => {
         buildTableRows(tableBody, data)
     })
 
@@ -26,6 +33,8 @@ function loadTable(event){
 
 
 function buildTableRows(tableBody, data){
+
+    
 
     
      let newRow = tableBody.insertRow();
