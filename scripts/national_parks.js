@@ -57,6 +57,9 @@ function buildTableRows(tableBody, data) {
 
     let cell4 = newRow.insertCell();
     cell4.innerHTML = data.Phone
+    if(data.Phone === 0){
+        cell4.innerHTML = "N/A"
+    }
 
     let cell5 = newRow.insertCell();
     if (data.Visit === undefined) {
