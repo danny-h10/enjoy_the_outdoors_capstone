@@ -72,7 +72,7 @@ function initLocationDropdown() {
 
     let defaultOption = document.createElement("option");
 
-    defaultOption.textContent = "Choose a Park Location"
+    defaultOption.textContent = "--Choose a Park Location--"
     defaultOption.value = ""
 
     locationDropdown.appendChild(defaultOption)
@@ -95,7 +95,7 @@ function initTypeDropdown() {
 
     let defaultOption = document.createElement("option");
 
-    defaultOption.textContent = "Choose a Park Type"
+    defaultOption.textContent = "--Choose a Park Type--"
     defaultOption.value = ""
 
     typeDropdown.appendChild(defaultOption)
@@ -118,15 +118,14 @@ function loadTypeTable(event) {
     let tableBody = document.querySelector("#locationTableBody")
 
 
-    let selectedTypes = event.target.value
-
+    let selectedtypes = event.target.value
+    console.log(selectedtypes)
     let matchingTypes = nationalParksArray.filter((data) => {
-        if (data.LocationName.indexOf("National Park") === 0) {
-            return data.LocationName === selectedTypes;
-        }
-        return false
+        if (data.LocationName.indexOf(selectedtypes)  !== -1) {
+            return selectedtypes
+        } 
 
-    })
+        })
 
     tableBody.innerHTML = ""
 
