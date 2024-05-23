@@ -81,9 +81,17 @@ function buildTableRows(tableBody, data) {
 
 
     let cell4 = newRow.insertCell();
-    cell4.innerHTML = data.Phone
+    cell4.innerHTML = `
+    <div> Phone:${data.Phone} </div>
+    <div> Fax:${data.Fax} </div>`
     if (data.Phone === 0) {
         cell4.innerHTML = "N/A"
+    }
+    if (data.Fax === 0){
+        
+        cell4.innerHTML = `
+        <div> Phone: ${data.Phone}</div>
+        <div>Fax: N/A</div>`
     }
 
     let cell5 = newRow.insertCell();
@@ -92,6 +100,7 @@ function buildTableRows(tableBody, data) {
     } else {
         cell5.innerHTML = data.Visit
     }
+
 }
 
 function initLocationDropdown() {

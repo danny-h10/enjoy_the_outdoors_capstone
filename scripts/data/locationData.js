@@ -61,26 +61,3 @@ window.onload = function(){
    
 }
 
-let newRow = tableBody.insertRow();
-
-   
-    let cell1 = newRow.insertRow();
-    cell1.innerHTML = data.LocationId
-
-    let cell2 = newRow.insertRow();
-    cell2.innerHTML = data.LocationName
-
-    let cell3 = newRow.insertRow();
-    cell3.innerHTML = data.Address
-    cell3.innerHTML = data.City
-    cell3.innerHTML = data.State
-    cell3.innerHTML = data.ZipCode
-
-    let cell4 = newRow.insertRow();
-    cell4.innerHTML = data.Phone
-
-    let cell5 = newRow.insertRow();
-    cell5.innerHTML = data.Visit
-    if(data.Visit === undefined){
-        cell5.innerHTML = "N/A";
-    }
