@@ -24,7 +24,9 @@ function displayMountCard(event) {
     let cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top", "card-img-fit");
 
-    cardImage.src = mountain.img
+    cardImage.src = `./images/${mountain.img}`
+    
+   
     cardImage.alt = mountain.name
 
     cardDiv.appendChild(cardImage);
