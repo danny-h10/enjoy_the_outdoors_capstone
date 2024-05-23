@@ -87,8 +87,8 @@ function buildTableRows(tableBody, data) {
     if (data.Phone === 0) {
         cell4.innerHTML = "N/A"
     }
-    if (data.Fax === 0){
-        
+    if (data.Fax === 0) {
+
         cell4.innerHTML = `
         <div> Phone: ${data.Phone}</div>
         <div>Fax: N/A</div>`
