@@ -9,13 +9,38 @@ window.onload = () => {
 
     locationDropdown.addEventListener("change", loadTable);
 
-    // locationDropdown.addEventListener("change", hideLocTyp)
-
     initTypeDropdown()
 
     let typeDropdown = document.querySelector("#typeDropdown")
 
     typeDropdown.addEventListener("change", loadTypeTable)
+
+
+
+
+
+
+    hideElement("#locationDropdown")
+    hideElement("#typeDropdown")
+
+    let locationRadio = document.querySelector("#Location")
+    let typeRadio = document.querySelector("#Type")
+
+    locationRadio.addEventListener("click", hideShowRadio)
+    typeRadio.addEventListener("click", hideShowRadio)
+
+}
+
+
+function hideShowRadio(event) {
+
+    if (event.target.value === "Type") {
+        showElement("#typeDropdown")
+        hideElement("#locationDropdown")
+    } else {
+        showElement("#locationDropdown")
+        hideElement("#typeDropdown")
+    }
 }
 
 function loadTable(event) {
@@ -57,7 +82,7 @@ function buildTableRows(tableBody, data) {
 
     let cell4 = newRow.insertCell();
     cell4.innerHTML = data.Phone
-    if(data.Phone === 0){
+    if (data.Phone === 0) {
         cell4.innerHTML = "N/A"
     }
 
@@ -122,13 +147,13 @@ function loadTypeTable(event) {
 
 
     let selectedtypes = event.target.value
-    console.log(selectedtypes)
-    let matchingTypes = nationalParksArray.filter((data) => {
-        if (data.LocationName.indexOf(selectedtypes)  !== -1) {
-            return selectedtypes
-        } 
 
-        })
+    let matchingTypes = nationalParksArray.filter((data) => {
+        if (data.LocationName.indexOf(selectedtypes) !== -1) {
+            return selectedtypes
+        }
+
+    })
 
     tableBody.innerHTML = ""
 
@@ -139,15 +164,13 @@ function loadTypeTable(event) {
 }
 
 
-// function hideLocTyp(event) {
+function hideElement(someSelector) {
+    let el = document.querySelector(someSelector);
+    el.style.display = "none";
+}
 
-//     let locationSection = document.querySelector("#locationDropdown");
 
-//     if (event.target.value === "Type") {
-//         locationSection.classList.remove("d-none")
-//     } else {
-//         locationSection.classList.add("d-none")
-//     }
-
-// }
-
+function showElement(someSelector) {
+    let el = document.querySelector(someSelector);
+    el.style.display = "block";
+}
