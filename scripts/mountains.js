@@ -22,16 +22,16 @@ function displayMountCard(event) {
     cardDiv.classList.add("card", "w-25");
 
     let cardImage = document.createElement("img");
-    cardDiv.classList.add("card-img", "card-img-fit");
+    cardDiv.classList.add("card-img", "card-img-fit", "bg-dark")
     cardImage.src = `./images/${mountain.img}`
     cardImage.alt = mountain.name
     
 
     let cardBody = document.createElement("div")
-    cardBody.classList.add("card-body")
+    cardBody.classList.add("card-body",  "bg-dark", "text-light")
 
     let cardTitle = document.createElement("h5")
-    cardTitle.className = `card-header`
+    cardTitle.className = `card-header, bg-dark text-light`
     cardTitle.innerHTML = mountain.name
 
     let cardText = document.createElement("p")
@@ -40,7 +40,7 @@ function displayMountCard(event) {
 
 
     let cardFooter = document.createElement("div")
-    cardFooter.classList.add("card-footer")
+    cardFooter.classList.add("card-footer", "bg-light", "text-dark")
     cardFooter.innerHTML = `
     <div>Elevation: ${mountain.elevation} feet.</div>
     <div>Effort: ${mountain.effort}</div>
