@@ -16,10 +16,6 @@ window.onload = () => {
     typeDropdown.addEventListener("change", loadTypeTable)
 
 
-
-
-
-
     hideElement("#locationDropdown")
     hideElement("#typeDropdown")
 
